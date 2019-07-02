@@ -16,7 +16,7 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 Base.classes.keys()
 
-# Record all the things
+# Reference all the things
 Measurement = Base.classes.measurement
 Station = Base.classes.station
 
@@ -25,3 +25,14 @@ session =  Session(engine)
 
 app = Flask(__name__)
 
+@app.route("/")
+def homepage():
+    """List of all available API routes"""
+    return(
+
+    )
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+    results = session.query(Measurement.date, Measurement.tobs).\
+        filter
